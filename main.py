@@ -3,9 +3,6 @@ from twython import Twython
 import time
 import json
 
-
-
-
 # Secret Keys
 apiKey = "qaiHFqWKyHuHWibbBOuJl3grj"
 apiSecret = "mQ0w0YyeY5z5WkkDByI3TG9kI9OWzmmKGoe9A9BLEPeAhbm6Sj"
@@ -16,37 +13,35 @@ accessTokenSecret = "PKJJzwCU05e7UHgRtoRdVTYDRjZ48ksewf4arpQwlw18S"
 api = Twython(apiKey,apiSecret,accessToken,accessTokenSecret)
 #api.update_status(status=tweetStr)
 
-
-
-class song:
-    def __init__(self, user, name, recp, notes):
-        self.user= user
-        self.name = name
-        self.recp = recp
-        self.notes = notes
-        self.played = False
-    def play(self):
-        print("Playing: "+ self.name)
-
 tweet = api.get_mentions_timeline()
-
 results = api.search(q="@project_mayo",count = 10);
 all_tweets = results['statuses']
+song_List = []
+reading = True
+content = ""
 for tw in all_tweets:
-    print(tw['text'])
+    #print(tw['text'])
+    if reading:
+        song_List.append(tw['text'])
+    if tw['text'].find("DONE") < 0:
+        reading = False
 
-    
+song_List.reverse()
+for x in song_List:
+    content = content + x
 
-#data = json.loads(tweet)
-#print(tweet)
+#everything is in content
+songNameLoc = content.find("NAME:")+6
+toLoc = content.find("TO")
 
-#location = content.find("u'text'")
-#end = content.find("DONE")
+songName = content[songNameLoc:toLoc]
+print(songName)
 
-#loop = True
-#while loop:
-#    print("loopdeloopandpull")
-#    loop = False
-#tweetStr="Hey, Jesse White!"
-#api = Twython(apiKey,apiSecret,accessToken,accessTokenSecret)
-#api.update_status(status=tweetStr)
+toLoc += 4
+print(content[toLoc])
+recp = content[toLoc:content.find("!")]
+print(recp)
+
+end = content.find("DONE")
+
+notes = content[content.find("!")+2:end]

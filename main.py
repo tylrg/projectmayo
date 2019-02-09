@@ -35,6 +35,8 @@ all_tweets = results['statuses']
 for tw in all_tweets:
     print(tw['text'])
 
+    
+
 #data = json.loads(tweet)
 #print(tweet)
 

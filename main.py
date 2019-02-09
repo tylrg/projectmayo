@@ -14,6 +14,20 @@ accessTokenSecret = "PKJJzwCU05e7UHgRtoRdVTYDRjZ48ksewf4arpQwlw18S"
 
 
 
+class song:
+    def __init__(name, tempo, notes, key, user):
+        self.name = name
+        self.age = age
+        self.tempo = tempo
+        self.notes = notes
+        self.key = key
+        self.user = user
+        self.played = False
+    def play(self):
+        print("Playing: "+ self.name)
+
+bool=l
+while
 
 
 

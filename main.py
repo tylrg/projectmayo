@@ -4,6 +4,7 @@ import time
 import json
 import os
 import re
+import dropbox
 
 # Secret Keys
 apiKey = "qaiHFqWKyHuHWibbBOuJl3grj"
@@ -64,3 +65,24 @@ test_object = open(test,"w")
 test_object.write(notes)
 test_object.close()
 os.system("./alda play -f "+test)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dbx = dropbox.Dropbox("NViWwhEdVtAAAAAAAAAAWGmCiE9SH9BE097WfoRq4l8Hif21_OLbEb_F0TvYI4KC")
+file = open("/Users/tylergabriel/Desktop/CS/projectmayo/"+songName+".txt")
+dbx.files_upload(file.read(),"/"+songName+".txt")
+
+
+tweetStr="Hey,"+recp+"! Here is a link to "+ songName+" , a song made just for you! https://www.dropbox.com/home/Apps/projectmayo?preview="+songName+".txt"
+api.update_status(status=tweetStr)

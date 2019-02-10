@@ -1,0 +1,54 @@
+# Config file for jack_capture.
+
+# Only long-form options work (i.e. those starting with --).
+# Options given here can in many cases be overriden with command line argument to jack_capture.
+
+
+# Copy the file here: ~/.jack_capture/config
+
+
+# A line can be one of:
+# 1. <variable> = <value>
+# 2. <switch>
+# 3. # <anything> (a comment)
+
+
+# Variables and switches:
+#
+# recording-time = n
+# filename-prefix = s
+# leading-zeros = n
+# format = format
+# print-formats
+# version
+# silent
+# quiet
+# verbose
+# mp3
+# mp3-quality = n
+# mp3-bitrate = n
+# write-to-stdout
+# disable-meter
+# hide-buffer-usage
+# disable-console
+# no-stdin
+# daemon
+# linear-meter
+# dB-meter-reference = n
+# meterbridge
+# meterbridge-type type
+# meterbridge-reference = level
+# jack-transport
+# jack-transport-multi
+# jack-frewheeling
+# manual-connections
+# bufsize = s
+# maxbufsize = s
+# filename = filename
+# osc = port
+# timestamp
+# rotatefile frames
+# hook-open command
+# hook-close command
+# hook-rotate command
+# hook-timing command

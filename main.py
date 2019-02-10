@@ -2,6 +2,8 @@ import sys
 from twython import Twython
 import time
 import json
+import os
+import re
 
 # Secret Keys
 apiKey = "qaiHFqWKyHuHWibbBOuJl3grj"
@@ -20,9 +22,9 @@ song_List = []
 reading = True
 content = ""
 for tw in all_tweets:
-    #print(tw['text'])
     if reading:
-        song_List.append(tw['text'])
+        if tw['text'].find("NAME:")> 0:
+            song_List.append(tw['text'])
     if tw['text'].find("DONE") < 0:
         reading = False
 
@@ -34,14 +36,31 @@ for x in song_List:
 songNameLoc = content.find("NAME:")+6
 toLoc = content.find("TO")
 
-songName = content[songNameLoc:toLoc]
+songName = content[songNameLoc:toLoc-1]
 print(songName)
 
 toLoc += 4
-print(content[toLoc])
+#print(content[toLoc])
 recp = content[toLoc:content.find("!")]
 print(recp)
 
 end = content.find("DONE")
-
 notes = content[content.find("!")+2:end]
+print(notes)
+#The song that is going to be played
+
+
+#Name of file
+songName = songName.replace(" ","_")
+# print(songName)
+
+#conversion section
+notes = notes.replace ("&lt;","<")
+notes = notes.replace ("&gt;",">")
+
+print(songName)
+test = songName + ".txt"
+test_object = open(test,"w")
+test_object.write(notes)
+test_object.close()
+os.system("./alda play -f "+test)
